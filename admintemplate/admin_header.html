@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<title>Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admintemplate template.">
+	<meta name="author" content="Muhammad Usman">
+
+	<!-- The styles -->
+	<link id="bs-css" href="admintemplate/css/bootstrap-cerulean.css" rel="stylesheet">
+	<style type="text/css">
+	body {
+		padding-bottom: 40px;
+	}
+	.sidebar-nav {
+		padding: 9px 0;
+	}
+	</style>
+	<link href="admintemplate/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="admintemplate/css/charisma-app.css" rel="stylesheet">
+	<link href='admintemplate/css/fullcalendar.css' rel='stylesheet'>
+	<link href="admintemplate/css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+	<link href='admintemplate/css/chosen.css' rel='stylesheet'>
+	<link href='admintemplate/css/fullcalendar.print.css' rel='stylesheet'  media='print'>
+	<link href='admintemplate/css/uniform.default.css' rel='stylesheet'>
+	<link href='admintemplate/css/colorbox.css' rel='stylesheet'>
+	<link href='admintemplate/css/jquery.cleditor.css' rel='stylesheet'>
+	<link href='admintemplate/css/jquery.noty.css' rel='stylesheet'>
+	<link href='admintemplate/css/noty_theme_default.css' rel='stylesheet'>
+	<link href='admintemplate/css/elfinder.min.css' rel='stylesheet'>
+	<link href='admintemplate/css/elfinder.theme.css' rel='stylesheet'>
+	<link href='admintemplate/css/jquery.iphone.toggle.css' rel='stylesheet'>
+	<link href='admintemplate/css/opa-icons.css' rel='stylesheet'>
+	<link href='admintemplate/css/uploadify.css' rel='stylesheet'>
+
+	<script src="admin/template/bower_component/jquery/jquery.min.js"> </script>
+
+</head>
+
+<body>
+	<?php if(!isset($no_visible_elements) || !$no_visible_elements)	{ ?>
+		<!-- topbar starts -->
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="#"> <img alt="admin" src="" /> <span></span></a>
+
+
+
+					<!-- user dropdown starts -->
+					<div class="btn-group pull-right" >
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="http://localhost/clinic/index.php?controller=login&task=logout">
+							<i class="icon-user"></i><span class="hidden-phone"> admin</span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Profile</a></li>
+							<li class="divider"></li>
+							<li><a href="login.html">Logout</a></li>
+						</ul>
+					</div>
+					<!-- user dropdown ends -->
+
+</div>
+</div>
+</div>
+<!-- topbar ends -->
+<?php } ?>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<?php if(!isset($no_visible_elements) || !$no_visible_elements) { ?>
+
+			<!-- left menu starts -->
+			<div class="span2 main-menu-span">
+				<div class="well nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li class="nav-header hidden-tablet">Main</li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=dashBoard"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=addAdminForm"><i class="icon-edit"></i><span class="hidden-tablet"> Add Admin </span> </a> </li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=addDocForm"><i class="icon-edit"></i><span class="hidden-tablet"> Add Doctor </span> </a> </li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=addAppoint"><i class="icon-edit"></i><span class="hidden-tablet"> Add Appointments </span> </a> </li>
+	          <li><a class="ajax-link" href="index.php?controller=Admin&task=addAvail"><i class="icon-edit"></i><span class="hidden-tablet"> Add Doctor Availabilty </span> </a> </li>
+
+            <li><a class="ajax-link" href="index.php?controller=Admin&task=viewAdmin"><i class="icon-eye-open"></i><span class="hidden-tablet"> View Admin</span></a></li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=index"><i class="icon-eye-open"></i><span class="hidden-tablet"> View Doctors</span></a></li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=viewApp"><i class="icon-eye-open"></i><span class="hidden-tablet"> View Appointments</span></a></li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=viewPat"><i class="icon-eye-open"></i><span class="hidden-tablet"> View Patients</span></a></li>
+						<li><a class="ajax-link" href="index.php?controller=Admin&task=viewAvail"><i class="icon-eye-open"></i><span class="hidden-tablet"> View Availability</span></a></li>
+
+					</ul>
+
+				</div><!--/.well -->
+			</div><!--/span-->
+			<!-- left menu ends -->
+
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+
+			<div id="content" class="span10">
+				<!-- content starts -->
+			<?php } ?>

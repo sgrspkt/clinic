@@ -1,0 +1,197 @@
+<html>
+		<footer>
+			<p class="pull-left">&copy; <a href="#" target="_blank">Clinical</a> 2017</p>
+
+		</footer>
+
+	</div><!--/.fluid-container-->
+
+	<!-- external javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<!-- jQuery -->
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		
+
+/*
+ * Default value
+ * --------------
+ * @method POST
+ * 
+ */
+var xhr = "";
+
+
+function sendAjax(options, cb) {
+
+    var method = (typeof options.method !== typeof undefined) ? options.method : "POST",
+        userBeforeSend = (typeof options.beforeSend === "function") ? options.beforeSend : "";
+
+    xhr = $.ajax({
+            url: options.url,
+            data: (typeof options.data !== typeof undefined) ? options.data : "",
+            method: method,
+            statusCode: {
+                401: function() {
+                    console.warn("Authentication credentials problem occured!! For more information, please contact support.");
+                },
+                403: function() {
+                    console.warn('403 Error!! For more information, please contact support.');
+                },
+                404: function() {
+                    console.warn('404 Error!! For more information, please contact support.');
+                },
+                400: function() {
+                    console.warn('400 Error!! For more information, please contact support.');
+                },
+                500: function() {
+                    console.warn('500 Error!! For more information, please contact support.');
+                }
+            },
+           
+            error: function(jaXHR, textStatus, errorThrown) {
+                console.warn(errorThrown + " " + textStatus + " " + "For more information, please contact support.");
+            },
+
+            success: function(data, textStatus, jqXHR) {
+
+                if (cb && typeof cb !== "string" && typeof cb === "function") {
+                    return cb(data);
+                }
+                return data;
+                
+            }
+
+        });
+}
+
+
+
+	$(document).on('change',"#setDocName", function(e){
+
+		// console.log($(this).val());
+		// return ;
+
+			var options = {
+			    method: "get",
+			    url: "/clinic/index.php?controller=Api&task=selectDoc&doc_id="+$(this).val(),
+			    
+			}
+
+			sendAjax(options, function(response){
+
+				var temp_res = {};
+					temp_res = response;
+
+
+				$(document).on("change","#userSelectedDate", function(e){
+					var cur_doc =  {};
+						cur_doc.doc_info = temp_res;
+						cur_doc.selected_date = this.value
+					
+					var options = {
+					    method: "post",
+					    url: "/clinic/index.php?controller=Api&task=fixAppoinment",
+					    data: cur_doc
+					}
+
+					sendAjax(options, function(response){
+						var times = JSON.parse(response),
+							i = 0,
+							total_time_length = Object.keys(JSON.parse(response)).length;
+
+						$("#time").html("");
+
+						if(typeof times.error !== typeof undefined) {
+							$("#time").css("border","1px solid red").
+										append("<option>"+times.error+"</option>");
+						} else {
+							for(; i < total_time_length; i++) {
+								if(typeof times[i] !== typeof undefined) {
+									$("#time").css("border","")
+											.append("<option>"+times[i]+"</option>");
+								}
+								
+							}
+						}
+					});
+
+				});
+			});
+
+		});
+
+	</script>
+	<!-- <script src="admintemplate/js/jquery2.js"></script> -->
+	<!-- jQuery UI -->
+	<!-- <script src="admintemplate/js/jquery-ui-1.8.21.custom.min.js"></script> -->
+	<!-- transition / effect library -->
+	<!-- <script src="admintemplate/js/bootstrap-transition.js"></script> -->
+	<!-- alert enhancer library -->
+	<!-- <script src="admintemplate/js/bootstrap-alert.js"></script> -->
+	<!-- modal / dialog library -->
+	<!-- <script src="admintemplate/js/bootstrap-modal.js"></script> -->
+	<!-- custom dropdown library -->
+	<!-- <script src="admintemplate/js/bootstrap-dropdown.js"></script> -->
+	<!-- scrolspy library -->
+	<!-- <script src="admintemplate/js/bootstrap-scrollspy.js"></script> -->
+	<!-- library for creating tabs -->
+	<!-- <script src="admintemplate/js/bootstrap-tab.js"></script> -->
+	<!-- library for advanced tooltip -->
+	<!-- <script src="admintemplate/js/bootstrap-tooltip.js"></script> -->
+	<!-- popover effect library -->
+	<!-- <script src="admintemplate/js/bootstrap-popover.js"></script> -->
+	<!-- button enhancer library -->
+	<!-- <script src="admintemplate/js/bootstrap-button.js"></script> -->
+	<!-- accordion library (optional, not used in demo) -->
+	<!-- <script src="admintemplate/js/bootstrap-collapse.js"></script> -->
+	<!-- carousel slideshow library (optional, not used in demo) -->
+	<!-- <script src="admintemplate/js/bootstrap-carousel.js"></script> -->
+	<!-- autocomplete library -->
+	<!-- <script src="admintemplate/js/bootstrap-typeahead.js"></script> -->
+	<!-- tour library -->
+	<!-- <script src="admintemplate/js/bootstrap-tour.js"></script> -->
+	<!-- library for cookie management -->
+	<!-- <script src="admintemplate/js/jquery.cookie.js"></script> -->
+	<!-- calander plugin -->
+	<!-- <script src='admintemplate/js/fullcalendar.min.js'></script> -->
+	<!-- data table plugin -->
+	<!-- <script src='admintemplate/js/jquery.dataTables.min.js'></script> -->
+
+	<!-- chart libraries start -->
+	<!-- <script src="admintemplate/js/excanvas.js"></script> -->
+	<!-- <script src="admintemplate/js/jquery.flot.min.js"></script> -->
+	<!-- <script src="admintemplate/js/jquery.flot.pie.min.js"></script> -->
+	<!-- <script src="admintemplate/js/jquery.flot.stack.js"></script> -->
+	<!-- <script src="admintemplate/js/jquery.flot.resize.min.js"></script> -->
+	<!-- chart libraries end -->
+
+	<!-- select or dropdown enhancer -->
+	<!-- <script src="admintemplate/js/jquery.chosen.min.js"></script> -->
+	<!-- checkbox, radio, and file input styler -->
+	<!-- <script src="admintemplate/js/jquery.uniform.min.js"></script> -->
+	<!-- plugin for gallery image view -->
+	<!-- <script src="admintemplate/js/jquery.colorbox.min.js"></script> -->
+	<!-- rich text editor library -->
+	<!-- <script src="admintemplate/js/jquery.cleditor.min.js"></script> -->
+	<!-- notification plugin -->
+	<!-- <script src="admintemplate/js/jquery.noty.js"></script> -->
+	<!-- file manager library -->
+	<!-- <script src="admintemplate/js/jquery.elfinder.min.js"></script> -->
+	<!-- star rating plugin -->
+	<!-- <script src="admintemplate/js/jquery.raty.min.js"></script> -->
+	<!-- for iOS style toggle switch -->
+	<!-- <script src="admintemplate/js/jquery.iphone.toggle.js"></script> -->
+	<!-- autogrowing textarea plugin -->
+	<!-- <script src="admintemplate/js/jquery.autogrow-textarea.js"></script> -->
+	<!-- multiple file upload plugin -->
+	<!-- <script src="admintemplate/js/jquery.uploadify-3.1.min.js"></script> -->
+	<!-- history.js for cross-browser state change on ajax -->
+	<!-- <script src="admintemplate/js/jquery.history.js"></script> -->
+	<!-- application script for Charisma demo -->
+	<!-- <script src="admintemplate/js/charisma.js"></script> -->
+</html>
